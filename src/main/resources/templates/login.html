@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
+    <div th:include="~{fragments/navbar :: navbar}"></div>
+
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="text-center mb-4">
-                    <h1 class="display-4">IDP Book</h1>
-                </div>
+
                 <div class="card">
                     <div class="card-body">
                         <h2 class="text-center mb-4">Login</h2>
@@ -41,9 +41,8 @@
                 </div>
             </div>
         </div>
-        <footer class="text-center mt-5">
-            &copy; 2024 IDP Book. Todos os direitos reservados.
-        </footer>
+
+        <div th:include="~{fragments/footer :: footer}"></div>
     </div>
 
     <!-- Bootstrap JS -->

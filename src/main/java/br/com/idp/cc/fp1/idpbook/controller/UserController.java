@@ -7,7 +7,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import br.com.idp.cc.fp1.idpbook.model.User;
 import br.com.idp.cc.fp1.idpbook.service.UserService;
@@ -60,21 +59,6 @@ public class UserController {
 
         // Redirecionar para a página de login após o registro bem-sucedido
         return "redirect:/login";
-    }
-
-    @PostMapping("/perform_login")
-    public String loginUser(@RequestParam("email") String email,
-                            @RequestParam("password") String password,
-                            Model model) {
-        User user = userService.findByEmail(email);
-
-        if (user == null || !passwordEncoder.matches(password, user.getPassword())) {
-            model.addAttribute("loginError", "Email ou senha incorretos.");
-            return "redirect:login?error=true";
-        }
-
-        // Redirecionar para a página de materiais após login bem-sucedido
-        return "redirect:/materials";
     }
 }
 

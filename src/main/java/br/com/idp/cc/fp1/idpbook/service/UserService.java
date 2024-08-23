@@ -22,11 +22,6 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmail(email);
     }
 
-    /**
-     * Salva um novo usuário no banco de dados.
-     *
-     * @param user O usuário a ser salvo.
-     */
     public void save(User user) {
         userRepository.save(user);
     }
@@ -34,6 +29,7 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email);
+        
         if (user == null) {
             throw new UsernameNotFoundException("User not found");
         }

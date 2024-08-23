@@ -21,14 +21,8 @@ public class User {
     private String email;
     private String password;
 
-    @OneToMany(mappedBy = "author")
-    private List<Comment> comments;
-
-    @OneToMany(mappedBy = "user")
-    private List<Rating> ratings;
-
-    @OneToMany(mappedBy = "uploadedBy")
-    private List<Material> uploadedMaterials;
+    @OneToMany(mappedBy = "postedBy")
+    private List<Post> postedPosts;
 
     // Getters and Setters
     
@@ -64,27 +58,11 @@ public class User {
         this.password = password;
     }
 
-    public List<Comment> getComments() {
-        return comments;
+    public List<Post> getPostedPosts() {
+        return postedPosts;
     }
 
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
-
-    public List<Rating> getRatings() {
-        return ratings;
-    }
-
-    public void setRatings(List<Rating> ratings) {
-        this.ratings = ratings;
-    }
-
-    public List<Material> getUploadedMaterials() {
-        return uploadedMaterials;
-    }
-
-    public void setUploadedMaterials(List<Material> uploadedMaterials) {
-        this.uploadedMaterials = uploadedMaterials;
+    public void setPostedPosts(List<Post> postedPosts) {
+        this.postedPosts = postedPosts;
     }
 }
