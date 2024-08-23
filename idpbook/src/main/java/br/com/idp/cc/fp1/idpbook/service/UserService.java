@@ -13,7 +13,6 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
-    // Injeção de dependência via construtor
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -35,9 +34,9 @@ public class UserService implements UserDetailsService {
         }
 
         return org.springframework.security.core.userdetails.User
-                .withUsername(user.getEmail()) // Aqui usa o email como username
+                .withUsername(user.getEmail())
                 .password(user.getPassword())
-                .authorities("USER") // Defina as roles/authorities necessárias
+                .authorities("USER")
                 .build();
     }
 }

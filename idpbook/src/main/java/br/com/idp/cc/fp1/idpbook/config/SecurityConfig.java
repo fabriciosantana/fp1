@@ -18,27 +18,25 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-            ) // Configura o CSRF para usar tokens armazenados em cookies, o que é uma prática comum
+            )
             .authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                .requestMatchers("/", "/home", "/register", "/login", "/css/**").permitAll() // Páginas públicas
-                .requestMatchers("/posts").permitAll()
+                .requestMatchers("/", "/posts", "/register", "/login", "/css/**").permitAll()
                 .requestMatchers("/posts/add").authenticated()
-                .anyRequest().authenticated() // Qualquer outra requisição precisa estar autenticada
+                .anyRequest().authenticated()
             )
             .formLogin(formLogin -> formLogin
-                .loginPage("/login") // Página de login personalizada
+                .loginPage("/login")
                 .loginProcessingUrl("/perform_login") 
                 .failureUrl("/login?error=true")
                 .usernameParameter("email")
-                .defaultSuccessUrl("/posts", true) // Redireciona após o login bem-sucedido
+                .defaultSuccessUrl("/posts", true)
                 .permitAll()
             )
 
             .logout(logout -> logout
-                //.logoutUrl("/logout")
-                .logoutSuccessUrl("/login?logout")  // Redireciona para a página de login após logout
-                .invalidateHttpSession(true)  // Invalida a sessão HTTP
-                .deleteCookies("JSESSIONID")  // Exclui o cookie de sessão
+                .logoutSuccessUrl("/login?logout")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
                 .permitAll() 
             );
 
@@ -47,6 +45,6 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // Utiliza o BCrypt para codificação de senhas
+        return new BCryptPasswordEncoder();
     }
 }

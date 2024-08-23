@@ -9,7 +9,6 @@ public class CustomErrorController implements ErrorController {
 
     @RequestMapping("/error")
     public String handleError() {
-        // Retorna o nome da página de erro personalizada
         return "error";
     }
 }

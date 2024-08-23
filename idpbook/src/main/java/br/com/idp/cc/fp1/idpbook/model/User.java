@@ -24,8 +24,6 @@ public class User {
     @OneToMany(mappedBy = "postedBy")
     private List<Post> postedPosts;
 
-    // Getters and Setters
-    
     public Long getId() {
         return id;
     }

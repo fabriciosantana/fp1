@@ -25,12 +25,12 @@ public class UserController {
 
     @GetMapping("/login")
     public String login() {
-        return "login"; // Nome do template login.html
+        return "login";
     }
 
     @GetMapping("/logout")
     public String logout() {
-        return "redirect:/login?logout"; // Redireciona para a página de login após o logout
+        return "redirect:/login?logout";
     }
 
     @GetMapping("/register")
@@ -45,19 +45,15 @@ public class UserController {
             return "register";
         }
 
-        // Verificar se o nome de usuário já está registrado
         if (userService.findByEmail(user.getEmail()) != null) {
             model.addAttribute("emailError", "Email já existe.");
             return "register";
         }
 
-        // Codificar a senha antes de salvar
         user.setPassword(passwordEncoder.encode(user.getPassword()));
 
-        // Salvar o usuário no banco de dados
         userService.save(user);
 
-        // Redirecionar para a página de login após o registro bem-sucedido
         return "redirect:/login";
     }
 }
