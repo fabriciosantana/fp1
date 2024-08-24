@@ -124,3 +124,9 @@ mvn clean install -DskipTests
 
 mvn spring-boot:run
 ```
+
+* Acesse a aplicação no browser 
+
+```
+http://localhost:8080/
+```
